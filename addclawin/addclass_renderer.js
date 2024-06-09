@@ -1,5 +1,5 @@
 const { ipcRenderer } = require("electron")
-const { cmd } = require("node-cmd")
+var cmd = require("node-cmd")
 var fs = require("fs")
 
 const clobtn = document.getElementById("close")
@@ -42,5 +42,5 @@ function getvalue(){
             console.log(err)
         }
     }))
-    cmd.run("py jshand.py")
+    cmd.runSync("py jshand.py")
 }
