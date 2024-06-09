@@ -1,6 +1,6 @@
 import json
 
 jsfile = open("proj.json", "r")
-a = json.loads(jsfile)
+a = json.load(jsfile)
 
-print(a)
+json.dump(a, jsfile, indent = 4)
