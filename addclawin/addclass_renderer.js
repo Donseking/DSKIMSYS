@@ -1,5 +1,6 @@
 const { ipcRenderer } = require("electron")
-var fs = require("fs")
+const { cmd } = require("node-cmd")
+const { fs } = require("fs")
 
 const clobtn = document.getElementById("close")
 clobtn.addEventListener("click", () => {
@@ -41,4 +42,5 @@ function getvalue(){
             console.log(err)
         }
     }))
+    cmd.run("py D:\\DskCode\\Program Repository\\python\\practice\\DSKIMSYS\\jshand.py")
 }
