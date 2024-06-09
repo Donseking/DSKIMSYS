@@ -1,0 +1,32 @@
+[
+    {
+        "name" : "假設工程",
+        "project" : [
+            {
+                "name" : "保護板",
+                "quantity" : 20,
+                "unit" : "包"
+            },
+            {
+                "name" : "膠帶",
+                "quantity" : 5,
+                "unit" : "封"
+            }
+        ]
+    },
+    {
+        "name" : "水電",
+        "project" : [
+            {
+                "name" : "矽利康",
+                "quantity" : 6,
+                "unit" : "支"
+            },
+            {
+                "name" : "油漆刷",
+                "quantity" : 10,
+                "unit" : "支"
+            }
+        ]
+    }
+]

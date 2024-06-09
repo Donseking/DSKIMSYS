@@ -1,0 +1,63 @@
+body{
+    -webkit-app-region: drag;
+    -user-select: none;
+    background-color: #272727;
+    color: skyblue;
+    font-family: "Consolas";
+    font-size: 15px;
+    margin: 0%;
+    width: auto;
+    height: 100vh;
+    position: relative;
+    font-family: "Consolas", "微軟正黑體";
+}
+
+#Menu{
+    background-color: #202020;
+    width: 100vw;
+    height: 20px;
+}
+
+#title{
+    margin: 5px;
+    width: auto;
+}
+
+#close{
+    -webkit-app-region: no-drag;
+    background-color: skyblue;
+    width: 10px;
+    height: 10px;
+    margin: 0px;
+    border: 0px;
+    border-radius: 50% 50% 50% 50%;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
+#reload{
+    -webkit-app-region: no-drag;
+    border: 3px solid skyblue;
+    width: 6px;
+    height: 6px;
+    margin: 0px;
+    border-radius: 50% 50% 50% 50%;
+    position: absolute;
+    right: 25px;
+    top: 5px;
+    padding: 0px;
+}
+
+#DevTools{
+    -webkit-app-region: no-drag;
+    border-left: 3px solid skyblue;
+    border-bottom: 3px solid skyblue;
+    width: 6px;
+    height: 6px;
+    margin: 0px;
+    position: absolute;
+    right: 43px;
+    top: 4px;
+    transform: rotate(-45deg);
+}

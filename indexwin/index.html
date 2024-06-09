@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+    <link href="./index_style.css" rel="stylesheet">
+    <title>DSKIMSYS 項目管理系統</title>
+  </head>
+  <body>
+    <div id = "Menu">
+      <span id = "title">Donseking item management system</span>
+      <div id = "close"></div>
+      <div id = "reload"></div>
+      <div id = "DevTools"></div>
+      <div id = "Min"></div>
+    </div>
+    <div id = "View">
+        <div id = "Control_Bar">
+          <div id = "search">
+            <div id = "control_search_bar">
+              <input type="text" id = "control_search" placeholder = "搜尋類別">
+            </div>
+          </div>
+          <div id = "control_itemclass">
+            <div class = "classes">假設工程</div>
+            <div class = "classes">水電</div>
+            <div class = "classes">泥作</div>
+            <div class = "classes">木工</div>
+            <div class = "classes">輕鋼架</div>
+            <div class = "classes">油漆</div>
+            <div class = "classes">招牌</div>
+            <div class = "classes">玻璃</div>
+            <div class = "classes">廚具</div>
+            <div class = "classes">衛浴</div>
+            <div class = "classes">壁紙</div>
+            <div class = "classes">地板</div>
+            <div class = "classes">防水</div>
+            <div class = "classes">鐵工</div>
+            <div class = "classes">石材</div>
+            <div class = "classes">人造石</div>
+            <div class = "classes">石材美容</div>
+            <div class = "classes">清潔</div>
+            <div class = "classes">搬運</div>
+            <div class = "classes">粗工</div>
+            <div class = "classes">半粗工</div>
+            <div class = "classes">雜項</div>
+          </div>
+        </div>
+        <div id = "Main_View"></div>
+        <div id = "Input_Bar">
+          <div id = "adcla" class = "addclass">
+            新增分類
+          </div>
+          <div id = "aditm" class = "addclass">
+            新增項目
+          </div>
+          <div id = "adCCW" class = "addclass">
+            新增子類別
+          </div>
+        </div>
+    </div>
+    <script src="./index_renderer.js"></script>
+  </body>
+</html>

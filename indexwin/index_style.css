@@ -1,0 +1,231 @@
+body{
+    -webkit-app-region: drag;
+    -user-select: none;
+    background-color: #272727;
+    color: skyblue;
+    font-family: "Consolas";
+    font-size: 15px;
+    margin: 0%;
+    width: auto;
+    height: 100vh;
+    position: relative;
+    font-family: "Consolas", "微軟正黑體";
+}
+
+#Menu{
+    background-color: #202020;
+    width: 100vw;
+    height: 3vh;
+}
+
+#title{
+    margin: 5px;
+    width: auto;
+}
+
+#close{
+    -webkit-app-region: no-drag;
+    background-color: skyblue;
+    width: 10px;
+    height: 10px;
+    margin: 0px;
+    border: 0px;
+    border-radius: 50% 50% 50% 50%;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
+#reload{
+    -webkit-app-region: no-drag;
+    border: 3px solid skyblue;
+    width: 6px;
+    height: 6px;
+    margin: 0px;
+    border-radius: 50% 50% 50% 50%;
+    position: absolute;
+    right: 25px;
+    top: 5px;
+    padding: 0px;
+}
+
+#DevTools{
+    -webkit-app-region: no-drag;
+    border-left: 3px solid skyblue;
+    border-bottom: 3px solid skyblue;
+    width: 6px;
+    height: 6px;
+    margin: 0px;
+    position: absolute;
+    right: 43px;
+    top: 4px;
+    transform: rotate(-45deg);
+}
+
+#Min{
+    -webkit-app-region: no-drag;
+    width: 12px;
+    height: 10px;
+    margin: 0px;
+    border-bottom: 3px solid skyblue;
+    border-radius: 1px;
+    position: absolute;
+    right: 60px;
+    top: 2px;
+}
+
+#Control_Bar{
+    background-color: #303030;
+    width: 15vw;
+    height: 97vh;
+    position: absolute;
+    top: 3vh;
+    left: 0px;
+    max-height: 97vh;
+    overflow: auto;
+    &::-webkit-scrollbar{
+        width: 5px;
+    }
+    &::-webkit-scrollbar-button {
+        background: transparent;
+    }
+    &::-webkit-scrollbar-track-piece{
+        background: transparent;
+    }
+    &::-webkit-scrollbar-track{
+        box-shadow: none;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: #555555;
+        border-radius: 5px;
+    }
+}
+
+#Main_View{
+    width: 85vw;
+    height: 70vh;
+    position: absolute;
+    top: 20px;
+    right: 0px;
+}
+
+#Input_Bar{
+    -webkit-app-region: no-drag;
+    background-color: #303030;
+    width: 85vw;
+    height: 30vh;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+#search{
+    position: absolute;
+    width: 100%;
+    top: 10px;
+}
+
+#control_search_bar{
+    height: 45px;
+    width: 80%;
+    background-color: rgba( 27, 27, 27, 0.85);
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#control_search{
+    -webkit-app-region: no-drag;
+    &::-webkit-input-placeholder{
+        color: #888;
+        font-size: 12px;
+        line-height: 25px;
+        text-align: center;
+    }
+    width: 80%;
+    height: 30px;
+    box-sizing: border-box;
+    border: 3px solid skyblue;
+    border-radius: 10px;
+    background-color: #202020;
+    color: skyblue;
+    outline: none;
+    padding: 0 10px;
+    margin-top: 7px;
+    margin-left: 10%;
+}
+
+#control_search:focus {
+    border-color: aqua;
+}
+
+#control_search:focus::before{
+    border-color: skyblue;
+}
+
+#control_itemclass{
+    width: 100%;
+    font-size: 15px;
+    font-family: "微軟正黑體";
+    font-weight: bold;
+    -webkit-app-region: no-drag;
+    position: absolute;
+    top: 60px;
+}
+
+.classes{
+    box-sizing: border-box;
+    width: 80%;
+    height: 40px;
+    border: 3px solid skyblue;
+    border-radius: 10px;
+    margin: 5px;
+    text-align: center;
+    line-height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newclasses{
+    border: 5px solid skyblue;
+    background-color: #454545;
+}
+
+#itemcss{
+    box-sizing: border-box;
+    width: 80%;
+    height: 45px;
+    border: 3px solid skyblue;
+    background-color: #272727;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 15px;
+    font-family: "微軟正黑體";
+    line-height: 10px;
+    position: relative;
+}
+
+#qua{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+.addclass{
+    box-sizing: border-box;
+    width: 100px;
+    height: 30px;
+    border: 3px solid skyblue;
+    border-radius: 10px;
+    padding: 10px;
+    line-height: 4px;
+    text-align: center;
+    margin: 10px;
+    font-size: smaller;
+}
+
+.addclass_mouseover{
+    background-color: #454545;
+    border: 5px solid skyblue;
+    line-height: 0px;
+}
