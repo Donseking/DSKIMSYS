@@ -1,6 +1,6 @@
 const { ipcRenderer } = require("electron")
 const { cmd } = require("node-cmd")
-const { fs } = require("fs")
+var fs = require("fs")
 
 const clobtn = document.getElementById("close")
 clobtn.addEventListener("click", () => {
@@ -31,16 +31,16 @@ enbtn.addEventListener("click", () => {
 
 function getvalue(){
     var val = document.getElementById("input_bar").value
-    var data = JSON.parse(fs.readFileSync("D:\\DskCode\\Program Repository\\python\\practice\\DSKIMSYS\\proj.json").toString())
+    var data = JSON.parse(fs.readFileSync("proj.json").toString())
     var newdata = {
         "name" : val,
         "project" : []
     }
     data.push(newdata)
-    fs.writeFileSync("D:\\DskCode\\Program Repository\\python\\practice\\DSKIMSYS\\proj.json", JSON.stringify(data), (err =>{
+    fs.writeFileSync("proj.json", JSON.stringify(data), (err =>{
         if (err){
             console.log(err)
         }
     }))
-    cmd.run("py D:\\DskCode\\Program Repository\\python\\practice\\DSKIMSYS\\jshand.py")
+    cmd.run("py jshand.py")
 }
