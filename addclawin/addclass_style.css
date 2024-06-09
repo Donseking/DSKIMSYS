@@ -92,6 +92,7 @@ body{
 }
 
 .enter{
+    -webkit-app-region: no-drag;
     box-sizing: border-box;
     width: 20%;
     height: 30px;
@@ -107,4 +108,5 @@ body{
 .enter_new{
     border: 5px solid skyblue;
     line-height: 20px;
+    background-color: #454545;
 }

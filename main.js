@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('node:path')
 const { ipcMain } = require("electron")
+require("electron-reload")(__dirname)
 
 function createWindow(file, op){
   const mainwin = new BrowserWindow(op)
@@ -105,5 +106,9 @@ app.whenReady().then(() => {
   ipcMain.on("adCCW close", () => {
     adCCWbtn.close()
     adCCWbtn = undefined
+  })
+
+  ipcMain.on("enbtn click", () => {
+    console.log("enbtn is click")
   })
 })
