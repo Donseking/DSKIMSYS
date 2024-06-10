@@ -35,20 +35,25 @@ enbtn.addEventListener("mouseover", () => {
 enbtn.addEventListener("mouseout", () => {
     enbtn.classList.remove("enter_new")
 })
-// enbtn.addEventListener("click", () => {
-// })
+enbtn.addEventListener("click", () => {
+    getdata()
+})
 
 function getdata(){
     var name = document.getElementById("name").value
     var num = document.getElementById("num").value
     var unit = document.getElementById("unit").value
     var data = JSON.parse(fs.readFileSync("proj.json").toString())
+    var mark = data[data.length - 1]
     var newdata = {
         "name" : name,
         "num" : num,
-        "unit" : unit
+        "unit" : unit,
     }
+    console.log(mark)
 }
+
+// getdata()
 
 function getallclass(){
     var data = JSON.parse(fs.readFileSync("proj.json").toString())

@@ -37,10 +37,10 @@ function getvalue(){
         "project" : []
     }
     data.push(newdata)
-    fs.writeFileSync("proj.json", JSON.stringify(data), (err =>{
+    fs.writeFileSync("proj.json", JSON.stringify(data), (err) =>{
         if (err){
             console.log(err)
         }
-    }))
+    })
     cmd.runSync("py jshand.py")
 }

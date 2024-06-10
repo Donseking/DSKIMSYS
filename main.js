@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu } = require('electron')
 const path = require('node:path')
 const { ipcMain } = require("electron")
 require("electron-reload")(__dirname)
@@ -113,6 +113,7 @@ app.whenReady().then(() => {
   let choosewin = undefined
   ipcMain.on("choose click", () => {
     if(typeof choosewin === "undefined"){
+      adop.parent = aditwin
       choosewin = createWindow("./choosewin/chwin.html", adop)
     }
   })
