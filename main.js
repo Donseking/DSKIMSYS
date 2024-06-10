@@ -89,7 +89,9 @@ app.whenReady().then(() => {
   let aditwin = undefined
   ipcMain.on("aditbtn click", () => {
     if (typeof aditwin === "undefined"){
+      adop.height = 250
       aditwin = createWindow("./additemwin/additem.html", adop)
+      adop.height = 300
     }
   })
   ipcMain.on("adit close", () => {
@@ -108,7 +110,14 @@ app.whenReady().then(() => {
     adCCWbtn = undefined
   })
 
-  ipcMain.on("enbtn click", () => {
-    console.log("enbtn is click")
+  let choosewin = undefined
+  ipcMain.on("choose click", () => {
+    if(typeof choosewin === "undefined"){
+      choosewin = createWindow("./choosewin/chwin.html", adop)
+    }
+  })
+  ipcMain.on("chwin close", () => {
+    choosewin.close()
+    choosewin = undefined
   })
 })

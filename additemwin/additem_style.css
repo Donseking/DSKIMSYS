@@ -61,3 +61,72 @@ body{
     top: 4px;
     transform: rotate(-45deg);
 }
+
+.main_input{
+    -webkit-app-region: no-drag;
+    &::-webkit-input-placeholder{
+        color: #888;
+        font-size: 12px;
+        line-height: 25px;
+        text-align: center;
+    }
+    width: 80%;
+    height: 30px;
+    box-sizing: border-box;
+    border: 3px solid skyblue;
+    border-radius: 10px;
+    background-color: #202020;
+    color: skyblue;
+    outline: none;
+    padding: 0 10px;
+    margin-top: 20px;
+    margin-left: 10%;
+}
+
+.main_input:focus {
+    border-color: aqua;
+}
+
+.main_input:focus::before{
+    border-color: skyblue;
+}
+
+.enter{
+    -webkit-app-region: no-drag;
+    box-sizing: border-box;
+    width: 20%;
+    height: 30px;
+    border: 3px solid skyblue;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 24px;
+    position: absolute;
+    right: 10%;
+    bottom: 15px;
+}
+
+.enter_new{
+    border: 5px solid skyblue;
+    line-height: 20px;
+    background-color: #454545;
+}
+
+.choose{
+    -webkit-app-region: no-drag;
+    box-sizing: border-box;
+    width: 20%;
+    height: 30px;
+    border: 3px solid skyblue;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 24px;
+    position: absolute;
+    left: 10%;
+    bottom: 15px;
+}
+
+.choose_new{
+    border: 5px solid skyblue;
+    line-height: 20px;
+    background-color: #454545;
+}
