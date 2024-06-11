@@ -69,5 +69,6 @@ mark.forEach( (e) => {
                 }
             })
         }
+        ipcRenderer.send("chwin close")
     })
 })

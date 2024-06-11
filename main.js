@@ -84,6 +84,7 @@ app.whenReady().then(() => {
   ipcMain.on("adca close", () => {
     adcawin.close()
     adcawin = undefined
+    mainwin.reload()
   })
 
   let aditwin = undefined
@@ -120,5 +121,21 @@ app.whenReady().then(() => {
   ipcMain.on("chwin close", () => {
     choosewin.close()
     choosewin = undefined
+  })
+
+  let warnwin = undefined
+  ipcMain.on("warn", () => {
+    if(typeof warnwin === "undefined"){
+      adop.width = 400
+      adop.height = 100
+      adop.parent = aditwin
+      warnwin = createWindow("./warnwin/warn.html", adop)
+      adop.width = 400
+      adop.height = 300
+    }
+  })
+  ipcMain.on("warn close", () => {
+    warnwin.close()
+    warnwin = undefined
   })
 })

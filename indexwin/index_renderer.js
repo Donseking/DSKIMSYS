@@ -21,6 +21,35 @@ minbtn.addEventListener("click", () => {
     ipcRenderer.send("min")
 })
 
+const conbar = document.getElementById("control_itemclass")
+
+function objlength (obj){
+    let olen = Object.keys(obj).length
+    return olen
+}
+
+function printclass(){
+    var data = JSON.parse(fs.readFileSync("proj.json").toString())
+    if ( objlength(data) != 0 ){
+        if ( typeof data[objlength(data) - 1] != "string" ){
+            for ( var i = 0; i < data.length; i ++ ){
+                var cladiv = document.createElement("div")
+                cladiv.classList.add("classes")
+                cladiv.innerHTML = data[i]["name"]
+                conbar.appendChild(cladiv)
+            }
+        }else {
+            for ( var i = 0; i < data.length - 1 ; i ++ ){
+                var cladiv = document.createElement("div")
+                cladiv.classList.add("classes")
+                cladiv.innerHTML = data[i]["name"]
+                conbar.appendChild(cladiv)
+            }
+        }
+    }
+}
+printclass()
+
 const clabtn = document.querySelectorAll(".classes")
 clabtn.forEach( (e) => {
     e.addEventListener("mouseover", () => {
