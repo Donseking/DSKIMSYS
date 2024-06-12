@@ -50,10 +50,15 @@ function getdata(){
         "num" : num,
         "unit" : unit,
     }
-    console.log(mark)
+    for ( var i = 0; i < data.length; i ++ ){
+        if ( mark === data[i]["name"] ){
+            data[i]["project"].push(newdata)
+        }
+        fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
+            console.log(err)
+        })
+    }
 }
-
-// getdata()
 
 function getallclass(){
     var data = JSON.parse(fs.readFileSync("proj.json").toString())

@@ -73,4 +73,11 @@ body{
     text-align: center;
     line-height: 24px;
     display: inline-block;
+    font-size: 13px;
+}
+
+.cladivNew{
+    border: 5px solid skyblue;
+    line-height: 20px;
+    background-color: #454545;
 }

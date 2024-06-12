@@ -52,6 +52,12 @@ classlsit()
 
 var mark = document.querySelectorAll(".cladiv")
 mark.forEach( (e) => {
+    e.addEventListener("mouseover", () => {
+        e.classList.add("cladivNew")
+    })
+    e.addEventListener("mouseout", () => {
+        e.classList.remove("cladivNew")
+    })
     e.addEventListener("click", () => {
         var data = JSON.parse(fs.readFileSync("proj.json").toString())
         if ( if_string() === 0){
