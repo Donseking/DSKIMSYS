@@ -92,6 +92,57 @@ function getvalue(){
             })
             return "no"
         }
+    }else{
+        if ( val.length != 0 ){
+            if (objlength(data) != 0){
+                for ( var i = 0; i < data.length - 1 ; i ++ ){
+                    if ( val === data[i]["name"] ){
+                        warnstr = "Please do not repeat class names"
+                        fs.writeFileSync("warnwin/warntext.json", JSON.stringify([warnstr]), (err) => {
+                            if (err){
+                                console.log(err)
+                            }
+                        })
+                        return "no"
+                    }else {
+                        var newdata = {
+                            "name" : val,
+                            "project" : []
+                        }
+                        const result = Object.keys(data).map((key) => data[key]);
+                        result.splice(-1, 0, newdata)
+                        fs.writeFileSync("proj.json", JSON.stringify(result), (err) =>{
+                            if (err){
+                                console.log(err)
+                            }
+                        })
+                        return "ok"
+                    }
+                }
+            }else {
+                var newdata = {
+                    "name" : val,
+                    "project" : []
+                }
+                const result = Object.keys(data).map((key) => data[key]);
+                result.splice(-2, 0, newdata)
+                fs.writeFileSync("proj.json", JSON.stringify(result), (err) =>{
+                    if (err){
+                        console.log(err)
+                    }
+                })
+                return "ok"
+            }
+        }else{
+            vals.style.border = "3px solid #FF5151"
+            warnstr = "Please enter the class name"
+            fs.writeFileSync("warnwin/warntext.json", JSON.stringify([warnstr]), (err) =>{
+                if (err){
+                    console.log(err)
+                }
+            })
+            return "no"
+        }
     }
-    cmd.runSync("py jshand.py")
+    // cmd.runSync("py jshand.py")
 }

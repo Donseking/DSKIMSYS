@@ -21,6 +21,7 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^30.0.6",
+    "electron-builder": "^24.13.3",
     "electron-reload": "^2.0.0-alpha.1"
   },
   "bugs": {

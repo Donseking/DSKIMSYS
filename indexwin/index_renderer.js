@@ -75,7 +75,7 @@ function addclick(e){
         divs.id = "itemcss"
         quadiv.id = "qua"
         divs.innerHTML = clicked[i].name
-        quadiv.innerHTML = clicked[i].quantity + "  " + clicked[i].unit
+        quadiv.innerHTML = clicked[i].num + "  " + clicked[i].unit
         divs.appendChild(quadiv)
         newelediv.appendChild(divs)
     }
@@ -89,7 +89,7 @@ function if_class_cick(itemname){
     }
     var itemdata = JSON.parse(fs.readFileSync("./proj.json").toString())
     for (var i = 0; i < itemdata.length; i ++ ){
-        if (itemdata[i].name == itemname){
+        if (itemdata[i].name === itemname){
             return itemdata[i].project
         }
     }
@@ -115,6 +115,7 @@ aditbtn.addEventListener("mouseout", () => {
 })
 aditbtn.addEventListener("click", () => {
     ipcRenderer.send("aditbtn click")
+    ipcRenderer.send("choose click")
 })
 
 const adCCWbtn = document.getElementById("adCCW")
