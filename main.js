@@ -123,6 +123,13 @@ app.whenReady().then(() => {
     choosewin = undefined
   })
 
+  ipcMain.on("adccw choose click", () => {
+    if(typeof choosewin === "undefined"){
+      adop.parent = adCCWbtn
+      choosewin = createWindow("./choosewin/chwin.html", adop)
+    }
+  })
+
   let warnwin = undefined
   ipcMain.on("warn", () => {
     if(typeof warnwin === "undefined"){

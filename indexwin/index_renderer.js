@@ -49,6 +49,8 @@ function printclass(){
     }
 }
 printclass()
+var data = JSON.parse(fs.readFileSync("proj.json").toString())
+addclick(data[objlength(data) - 1])
 
 const clabtn = document.querySelectorAll(".classes")
 clabtn.forEach( (e) => {
@@ -59,12 +61,12 @@ clabtn.forEach( (e) => {
         e.classList.remove("newclasses")
     })
     e.addEventListener("click", () => {
-        addclick(e)
+        addclick(e.innerHTML)
     })
 })
 
-function addclick(e){
-    var clicked = if_class_cick(e.innerHTML)
+function addclick(itname){
+    var clicked = if_class_cick(itname)
     var newele = document.getElementById("Main_View")
     var newelediv = document.createElement("div")
     newelediv.id = "itemsdiv"
@@ -74,8 +76,8 @@ function addclick(e){
         var quadiv = document.createElement("div")
         divs.id = "itemcss"
         quadiv.id = "qua"
-        divs.innerHTML = clicked[i].name
-        quadiv.innerHTML = clicked[i].num + "  " + clicked[i].unit
+        divs.innerHTML = clicked[i]["name"]
+        quadiv.innerHTML = clicked[i]["num"] + "  " + clicked[i]["unit"]
         divs.appendChild(quadiv)
         newelediv.appendChild(divs)
     }
@@ -87,10 +89,10 @@ function if_class_cick(itemname){
     if (maindiv.children.length != 0){
         dd.remove()
     }
-    var itemdata = JSON.parse(fs.readFileSync("./proj.json").toString())
+    var itemdata = JSON.parse(fs.readFileSync("proj.json").toString())
     for (var i = 0; i < itemdata.length; i ++ ){
-        if (itemdata[i].name === itemname){
-            return itemdata[i].project
+        if (itemdata[i]["name"] === itemname){
+            return itemdata[i]["project"]
         }
     }
 }
@@ -127,4 +129,38 @@ adCCWbtn.addEventListener("mouseout", () => {
 })
 adCCWbtn.addEventListener("click", () => {
     ipcRenderer.send("adCCWbtn click")
+    ipcRenderer.send("adccw choose click")
 })
+
+const declabtn = document.getElementById("decla")
+declabtn.addEventListener("mouseover", () => {
+    declabtn.classList.add("addclass_mouseover")
+})
+declabtn.addEventListener("mouseout", () => {
+    declabtn.classList.remove("addclass_mouseover")
+})
+// declabtn.addEventListener("click", () => {
+//     ipcRenderer.send("declabtn click")
+// })
+
+const deitmbtn = document.getElementById("deitm")
+deitmbtn.addEventListener("mouseover", () => {
+    deitmbtn.classList.add("addclass_mouseover")
+})
+deitmbtn.addEventListener("mouseout", () => {
+    deitmbtn.classList.remove("addclass_mouseover")
+})
+// deitmbtn.addEventListener("click", () => {
+//     ipcRenderer.send("deitmbtn click")
+// })
+
+const deCCWbtn = document.getElementById("deCCW")
+deCCWbtn.addEventListener("mouseover", () => {
+    deCCWbtn.classList.add("addclass_mouseover")
+})
+deCCWbtn.addEventListener("mouseout", () => {
+    deCCWbtn.classList.remove("addclass_mouseover")
+})
+// deitmbtn.addEventListener("click", () => {
+//     ipcRenderer.send("deCCWbtn click")
+// })

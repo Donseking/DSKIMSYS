@@ -213,13 +213,13 @@ body{
 }
 
 .addclass{
+    display: inline-block;
     box-sizing: border-box;
     width: 100px;
     height: 30px;
     border: 3px solid skyblue;
     border-radius: 10px;
-    padding: 10px;
-    line-height: 4px;
+    line-height: 24px;
     text-align: center;
     margin: 10px;
     font-size: smaller;
@@ -228,5 +228,5 @@ body{
 .addclass_mouseover{
     background-color: #454545;
     border: 5px solid skyblue;
-    line-height: 0px;
+    line-height: 20px;
 }

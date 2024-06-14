@@ -25,7 +25,6 @@ chbtn.addEventListener("mouseout", () => {
 })
 chbtn.addEventListener("click", () => {
     ipcRenderer.send("choose click")
-    console.log(getallclass())
 })
 
 const enbtn = document.getElementById("enter")
@@ -43,28 +42,57 @@ function getdata(){
     var name = document.getElementById("name").value
     var num = document.getElementById("num").value
     var unit = document.getElementById("unit").value
-    var data = JSON.parse(fs.readFileSync("proj.json").toString())
-    var mark = data[data.length - 1]
-    var newdata = {
-        "name" : name,
-        "num" : num,
-        "unit" : unit,
-    }
-    for ( var i = 0; i < data.length; i ++ ){
-        if ( mark === data[i]["name"] ){
-            data[i]["project"].push(newdata)
-        }
-        fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
-            console.log(err)
-        })
-    }
+    adit(name, num, unit)
 }
 
-function getallclass(){
+function adit(itname, itnum, itunit){
     var data = JSON.parse(fs.readFileSync("proj.json").toString())
-    var name_array = []
-    for( var i = 0; i < data.length; i ++ ){
-        name_array.push(data[i]["name"])
+    var mark = data[data.length - 1]
+    for ( var i = 0 ; i < data.length - 1 ; i ++){
+        if ( data[i]["name"] === mark ){
+            var pro = data[i]["project"]
+            if ( pro.length === 0) {
+                pro.push(
+                    {
+                        "name" : itname,
+                        "num" : parseInt(itnum),
+                        "unit" : itunit
+                    }
+                )
+                fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
+                    if ( err ) {
+                        console.log(err)
+                    }
+                })
+            }else {
+                for (var j = 0 ; j < pro.length ; j ++ ) {
+                    if ( itname === pro[j]["name"] ){
+                        pro[j]["num"] = parseInt(pro[j]['num']) + parseInt(itnum)
+                        data[i]["project"] = [
+                            {
+                                "name" : itname,
+                                "num" : pro[j]["num"],
+                                "unit" : itunit
+                            }
+                        ]
+                        fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
+                            if ( err ) {
+                                console.log(err)
+                            }
+                        })
+                    }else {
+                        var newdata = {
+                            "name" : itname,
+                            "num" : itnum,
+                            "unit" : itunit,
+                        }
+                        data[i]['project'].push(newdata)
+                        fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
+                            console.log(err)
+                        })
+                    }
+                }
+            }
+        }
     }
-    return name_array
 }
