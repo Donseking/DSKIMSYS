@@ -30,6 +30,7 @@ const mainop = {
     nativeWindowOpen : true
   },
   show : false,
+  icon : "./icon/item.ico"
 }
 app.whenReady().then(() => {
   const mainwin = createWindow("./indexwin/index.html", mainop)
@@ -74,6 +75,7 @@ app.whenReady().then(() => {
     parent : mainwin,
     module : true,
     show : false,
+    icon : "icon/item.ico"
   }
 
   let adcawin = undefined

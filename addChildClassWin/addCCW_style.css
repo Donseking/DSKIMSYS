@@ -19,8 +19,11 @@ body{
 }
 
 #title{
+    position: absolute;
     margin: 5px;
     width: auto;
+    top: -5px;
+    left: 20px;
 }
 
 #close{
