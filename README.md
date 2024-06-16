@@ -1,5 +1,10 @@
 DSKITSYS
 ===
 
-This is a software I wrote to facilitate my work
----
+> 這是我為了方便所寫的軟體
+軟體尚未完成
+目前只完成了三個功能
+
+- 新增分類
+- 新增項目
+- 新增子分類
