@@ -81,3 +81,10 @@ body{
     line-height: 20px;
     background-color: #454545;
 }
+
+.nothingstring{
+    margin: 10px;
+    height: 40px;
+    padding: 10px;
+    line-height: 20px;
+}

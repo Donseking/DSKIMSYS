@@ -50,7 +50,13 @@ function printclass(){
 }
 printclass()
 var data = JSON.parse(fs.readFileSync("proj.json").toString())
-addclick(data[objlength(data) - 1])
+if ( typeof data[objlength(data) - 1] === "string") {
+    addclick(data[objlength(data) - 1])
+}else if ( objlength(data) === 0){
+    ipcRenderer.send("ipc-msg", "There are no items in the class")
+}else {
+    addclick(data[0]["name"])
+}
 
 const clabtn = document.querySelectorAll(".classes")
 clabtn.forEach( (e) => {
@@ -71,29 +77,44 @@ function addclick(itname){
     var newelediv = document.createElement("div")
     newelediv.id = "itemsdiv"
     newele.appendChild(newelediv)
-    for ( var i = 0; i < clicked.length; i ++ ){
-        var divs = document.createElement("div")
-        var quadiv = document.createElement("div")
-        divs.id = "itemcss"
-        quadiv.id = "qua"
-        divs.innerHTML = clicked[i]["name"]
-        quadiv.innerHTML = clicked[i]["num"] + "  " + clicked[i]["unit"]
-        divs.appendChild(quadiv)
-        newelediv.appendChild(divs)
+
+    if ( objlength(clicked) != 0 ){
+        for ( var i = 0; i < clicked.length; i ++ ){
+            if ( clicked[i]["type"] === "child class item"){
+                var divs = document.createElement("div")
+                divs.id = "itemcss"
+                divs.innerHTML = clicked[i]["name"]
+                newelediv.appendChild(divs)
+            }else if ( clicked[i]["type"] === "class item" ){
+                var divs = document.createElement("div")
+                var quadiv = document.createElement("div")
+                divs.id = "itemcss"
+                quadiv.id = "qua"
+                divs.innerHTML = clicked[i]["name"]
+                quadiv.innerHTML = clicked[i]["num"] + "  " + clicked[i]["unit"]
+                divs.appendChild(quadiv)
+                newelediv.appendChild(divs)
+            }
+        }
     }
 }
 
 function if_class_cick(itemname){
+    var un = []
     var maindiv = document.getElementById("Main_View")
     var dd = document.getElementById("itemsdiv")
     if (maindiv.children.length != 0){
         dd.remove()
     }
     var itemdata = JSON.parse(fs.readFileSync("proj.json").toString())
-    for (var i = 0; i < itemdata.length; i ++ ){
-        if (itemdata[i]["name"] === itemname){
-            return itemdata[i]["project"]
+    if (itemdata.length != 0) {
+        for (var i = 0; i < itemdata.length; i ++ ){
+            if (itemdata[i]["name"] === itemname){
+                return itemdata[i]["project"]
+            }
         }
+    }else {
+        return un
     }
 }
 

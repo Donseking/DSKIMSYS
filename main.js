@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require('electron')
+const { app, BrowserWindow } = require('electron')
 const path = require('node:path')
 const { ipcMain } = require("electron")
 require("electron-reload")(__dirname)
@@ -19,12 +19,14 @@ const mainop = {
   autoHideMenuBar: true,
   show: false,
   resizable: false,
+  sandbox: false,
+  center: true,
   webPreferences: {
     hasShadow: true,
     nodeIntegration: true,
     enableRemoteModule:true,
     contextIsolation:false,
-    preload: path.join(__dirname, 'preload.js'),
+    preload: path.join(__dirname, 'prel.js'),
     nativeWindowOpen : true
   },
   show : false,
@@ -61,12 +63,13 @@ app.whenReady().then(() => {
     autoHideMenuBar: true,
     show: false,
     resizable: false,
+    sandbox: false,
     webPreferences: {
       hasShadow: true,
       nodeIntegration: true,
       enableRemoteModule:true,
       contextIsolation:false,
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'prel.js'),
     },
     parent : mainwin,
     module : true,
@@ -96,18 +99,24 @@ app.whenReady().then(() => {
     }
   })
   ipcMain.on("adit close", () => {
-    aditwin.close()
+    if ( typeof aditwin != "undefined" ){
+      aditwin.close()
+    }
     aditwin = undefined
   })
 
   let adCCWbtn = undefined
   ipcMain.on("adCCWbtn click", () => {
     if (typeof adCCWbtn === "undefined"){
+      adop.height = 150
       adCCWbtn = createWindow("./addChildClassWin/addCCW.html", adop)
+      adop.height = 300
     }
   })
   ipcMain.on("adCCW close", () => {
-    adCCWbtn.close()
+    if ( typeof adCCWbtn != "undefined" ){
+      adCCWbtn.close()
+    }
     adCCWbtn = undefined
   })
 
@@ -144,5 +153,9 @@ app.whenReady().then(() => {
   ipcMain.on("warn close", () => {
     warnwin.close()
     warnwin = undefined
+  })
+
+  ipcMain.on("ipc-msg", (e, arg) => {
+    console.log(arg)
   })
 })

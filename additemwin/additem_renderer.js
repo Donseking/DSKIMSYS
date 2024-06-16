@@ -42,7 +42,18 @@ function getdata(){
     var name = document.getElementById("name").value
     var num = document.getElementById("num").value
     var unit = document.getElementById("unit").value
-    adit(name, num, unit)
+
+    if (name === "" || num === "" || unit === ""){
+        var warnstr = "Please enter the items"
+        fs.writeFileSync("warnwin/warntext.json", JSON.stringify([warnstr]), (err) =>{
+            if (err){
+                console.log(err)
+            }
+        })
+        ipcRenderer.send("warn")
+    }else {
+        adit(name, num, unit)
+    }
 }
 
 function adit(itname, itnum, itunit){
@@ -51,12 +62,14 @@ function adit(itname, itnum, itunit){
     for ( var i = 0 ; i < data.length - 1 ; i ++){
         if ( data[i]["name"] === mark ){
             var pro = data[i]["project"]
-            if ( pro.length === 0) {
+            var namelist = getclassname(pro)
+            if ( namelist.length === 0) {
                 pro.push(
                     {
                         "name" : itname,
                         "num" : parseInt(itnum),
-                        "unit" : itunit
+                        "unit" : itunit,
+                        "type" : "class item"
                     }
                 )
                 fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
@@ -64,35 +77,60 @@ function adit(itname, itnum, itunit){
                         console.log(err)
                     }
                 })
-            }else {
-                for (var j = 0 ; j < pro.length ; j ++ ) {
-                    if ( itname === pro[j]["name"] ){
-                        pro[j]["num"] = parseInt(pro[j]['num']) + parseInt(itnum)
-                        data[i]["project"] = [
-                            {
-                                "name" : itname,
-                                "num" : pro[j]["num"],
-                                "unit" : itunit
-                            }
-                        ]
+            }else if ( namelist.length > 1 ) {
+                for (var j = 0 ; j < namelist.length ; j ++ ) {
+                    if ( itname === namelist[j] ){
+                        pro[j]["num"] = parseInt(pro[j]["num"]) + parseInt(itnum)
+                        data[i]["project"] = pro
                         fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
                             if ( err ) {
                                 console.log(err)
                             }
                         })
-                    }else {
-                        var newdata = {
-                            "name" : itname,
-                            "num" : itnum,
-                            "unit" : itunit,
-                        }
-                        data[i]['project'].push(newdata)
-                        fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
-                            console.log(err)
-                        })
+                        break
                     }
+                }
+                if ( j === namelist.length - 1 ){
+                    var newdata = {
+                        "name" : itname,
+                        "num" : itnum,
+                        "unit" : itunit,
+                        "type" : "class item"
+                    }
+                    data[i]['project'].push(newdata)
+                    fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
+                        console.log(err)
+                    })
+                }
+            }else {
+                if ( itname != namelist[0] ){
+                    var newdata = {
+                        "name" : itname,
+                        "num" : itnum,
+                        "unit" : itunit,
+                        "type" : "class item"
+                    }
+                    data[i]['project'].push(newdata)
+                    fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
+                        console.log(err)
+                    })
+                }else {
+                    pro[0]["num"] = parseInt(pro[0]["num"]) + parseInt(itnum)
+                    fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
+                        if ( err ) {
+                            console.log(err)
+                        }
+                    })
                 }
             }
         }
     }
+}
+
+function getclassname(claname){
+    var namelist = []
+    for (var i = 0; i < claname.length; i ++){
+        namelist.push(claname[i]["name"])
+    }
+    return namelist
 }

@@ -1,9 +1,17 @@
 const { ipcRenderer } = require("electron")
 var fs = require("fs")
 
+var if_nothing = 0
+
 const clobtn = document.getElementById("close")
 clobtn.addEventListener("click", () => {
-    ipcRenderer.send("chwin close")
+    if ( if_nothing === 0 ){
+        ipcRenderer.send("chwin close")
+    }else {
+        ipcRenderer.send("chwin close")
+        ipcRenderer.send("adit close")
+        ipcRenderer.send("adCCW close")
+    }
 })
 
 const rebtn = document.getElementById("reload")
@@ -30,11 +38,19 @@ function getclassname(){
 function classlsit(){
     var classnamelist = getclassname()
     var main = document.getElementById("main")
-    for ( var i = 0; i < classnamelist.length; i ++ ){
-        var cladiv = document.createElement("div")
-        cladiv.className = "cladiv"
-        cladiv.innerHTML = classnamelist[i]
-        main.appendChild(cladiv)
+    if (classnamelist.length != 0){
+        for ( var i = 0; i < classnamelist.length; i ++ ){
+            var cladiv = document.createElement("div")
+            cladiv.className = "cladiv"
+            cladiv.innerHTML = classnamelist[i]
+            main.appendChild(cladiv)
+        }
+    }else {
+        var warndiv = document.createElement("div")
+        warndiv.className = "nothingstring"
+        warndiv.innerHTML = "No classification has been created yet"
+        main.appendChild(warndiv)
+        if_nothing = 1
     }
 }
 
