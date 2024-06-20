@@ -30,7 +30,7 @@ const mainop = {
     nativeWindowOpen : true
   },
   show : false,
-  icon : "./icon/item.ico"
+  icon : "icon/letter-d.ico"
 }
 app.whenReady().then(() => {
   const mainwin = createWindow("./indexwin/index.html", mainop)
@@ -75,7 +75,7 @@ app.whenReady().then(() => {
     parent : mainwin,
     module : true,
     show : false,
-    icon : "icon/item.ico"
+    icon : "icon/letter-d.ico"
   }
 
   let adcawin = undefined
@@ -146,7 +146,7 @@ app.whenReady().then(() => {
     if(typeof warnwin === "undefined"){
       adop.width = 400
       adop.height = 100
-      adop.parent = aditwin
+      adop.parent = mainwin
       warnwin = createWindow("./warnwin/warn.html", adop)
       adop.width = 400
       adop.height = 300
@@ -159,5 +159,29 @@ app.whenReady().then(() => {
 
   ipcMain.on("ipc-msg", (e, arg) => {
     console.log(arg)
+  })
+
+  let declawin = undefined
+  ipcMain.on("declabtn click", () => {
+    if(typeof declawin === "undefined"){
+      adop.parent = mainwin
+      declawin = createWindow("declawin/decla.html", adop)
+    }
+  })
+  ipcMain.on("decla close", () => {
+    declawin.close()
+    declawin = undefined
+  })
+
+  let conwin = undefined
+  ipcMain.on("decla click", () => {
+    if ( typeof conwin === "undefined" ){
+      adop.parent = declawin
+      conwin = createWindow("confirmwin/conwin.html", adop)
+    }
+  })
+  ipcMain.on("conwin close", () => {
+    conwin.close()
+    conwin = undefined
   })
 })

@@ -24,6 +24,7 @@ devbtn.addEventListener("click", () => {
     ipcRenderer.send("devtools")
 })
 
+// FUN 獲得分類名稱
 function getclassname(){
     var data = JSON.parse(fs.readFileSync("proj.json").toString())
     var name_array = []
@@ -35,6 +36,7 @@ function getclassname(){
     return name_array
 }
 
+// FUN 將分類加入頁面
 function classlsit(){
     var classnamelist = getclassname()
     var main = document.getElementById("main")
@@ -54,6 +56,7 @@ function classlsit(){
     }
 }
 
+// FUN 判斷資料最後是否有特定詞
 function if_string(){
     var data = JSON.parse(fs.readFileSync("proj.json").toString())
     var result = Object.keys(data).map((key) => [key, data[key]]);

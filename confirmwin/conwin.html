@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-
-<html lang="zh-TW">
+<html>
     <head>
         <meta charset="UTF-8">
         <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
         <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
-        <link href="./warn_style.css" rel="stylesheet">
-        <title>Warn</title>
-    </head>
+        <link href="./conwin_style.css" rel="stylesheet">
+        <title>Delete Class</title>
+        </head>
     <body>
         <div id = "Menu">
             <img src = "logo/letter-d.ico" width = "20px" height = "20px">
-            <span id = "title">Warn</span>
+            <span id = "title">Confirm</span>
             <div id = "close"></div>
             <div id = "reload"></div>
             <div id = "DevTools"></div>
-            <div id = "Min"></div>
         </div>
-        <div id = "warn_string">
-        </div>
+
+        <!-- do 完成頁面  -->
+
+        <div id = "main"></div>
     </body>
-    <script src="./warn_renderer.js"></script>
+    <script src="./conwin_renderer.js"></script>
 </html>

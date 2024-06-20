@@ -40,6 +40,7 @@ enbtn.addEventListener("click", () => {
     getCCname()
 })
 
+// FUN 獲取子分類名稱 並顯示在主頁面
 function getCCname(){
     var warnstr = ""
     var ccname = document.getElementById("name").value

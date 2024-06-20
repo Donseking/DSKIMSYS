@@ -38,6 +38,8 @@ enbtn.addEventListener("click", () => {
     getdata()
 })
 
+// fix 無法輸入第三個項目
+// FUN [ 新增項目 ] 主要進入點
 function getdata(){
     var name = document.getElementById("name").value
     var num = document.getElementById("num").value
@@ -56,6 +58,7 @@ function getdata(){
     }
 }
 
+// FUN 輸入的資料判斷
 function adit(itname, itnum, itunit){
     var data = JSON.parse(fs.readFileSync("proj.json").toString())
     var mark = data[data.length - 1]
@@ -127,6 +130,7 @@ function adit(itname, itnum, itunit){
     }
 }
 
+// FUN 獲得 json 資料
 function getclassname(claname){
     var namelist = []
     for (var i = 0; i < claname.length; i ++){

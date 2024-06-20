@@ -23,11 +23,13 @@ minbtn.addEventListener("click", () => {
 
 const conbar = document.getElementById("control_itemclass")
 
+// FUN 計算 object 長度
 function objlength (obj){
     let olen = Object.keys(obj).length
     return olen
 }
 
+// FUN 將分類加入畫面
 function printclass(){
     var data = JSON.parse(fs.readFileSync("proj.json").toString())
     if ( objlength(data) != 0 ){
@@ -48,6 +50,9 @@ function printclass(){
         }
     }
 }
+
+
+// FUN 判斷資料是否有特殊詞 / 資料長度 
 printclass()
 var data = JSON.parse(fs.readFileSync("proj.json").toString())
 if ( typeof data[objlength(data) - 1] === "string") {
@@ -58,6 +63,7 @@ if ( typeof data[objlength(data) - 1] === "string") {
     addclick(data[0]["name"])
 }
 
+// > 設定每個分類的 css 反應 並增加 function
 const clabtn = document.querySelectorAll(".classes")
 clabtn.forEach( (e) => {
     e.addEventListener("mouseover", () => {
@@ -71,6 +77,7 @@ clabtn.forEach( (e) => {
     })
 })
 
+// FUN 將項目加入畫面
 function addclick(itname){
     var clicked = if_class_cick(itname)
     var newele = document.getElementById("Main_View")
@@ -99,6 +106,10 @@ function addclick(itname){
     }
 }
 
+// ? 如何顯示項目詳細資料
+// ? [ 規格 ] [ 成本 ] [ 報價 ]  { 備註 } [ 供應商 ]
+
+// FUN 當點擊時執行 { 如果畫面中有資料 刪除並重新渲染 }
 function if_class_cick(itemname){
     var un = []
     var maindiv = document.getElementById("Main_View")
@@ -118,6 +129,9 @@ function if_class_cick(itemname){
     }
 }
 
+
+
+// > 當 [ add new class ] 被點擊時執行 並向主進程呼叫視窗
 const adcabtn = document.getElementById("adcla")
 adcabtn.addEventListener("mouseover", () => {
     adcabtn.classList.add("addclass_mouseover")
@@ -129,6 +143,7 @@ adcabtn.addEventListener("click", () => {
     ipcRenderer.send("adcabtn click")
 })
 
+// > 當 [ add new item ] 被點擊時執行 並向主進程呼叫視窗
 const aditbtn = document.getElementById("aditm")
 aditbtn.addEventListener("mouseover", () => {
     aditbtn.classList.add("addclass_mouseover")
@@ -141,6 +156,7 @@ aditbtn.addEventListener("click", () => {
     ipcRenderer.send("choose click")
 })
 
+// > 當 [ add new child class ] 被點擊時執行 並向主進程呼叫視窗
 const adCCWbtn = document.getElementById("adCCW")
 adCCWbtn.addEventListener("mouseover", () => {
     adCCWbtn.classList.add("addclass_mouseover")
@@ -153,6 +169,7 @@ adCCWbtn.addEventListener("click", () => {
     ipcRenderer.send("adccw choose click")
 })
 
+// > 當 [ delete class ] 被點擊時執行 並向主進程呼叫視窗
 const declabtn = document.getElementById("decla")
 declabtn.addEventListener("mouseover", () => {
     declabtn.classList.add("addclass_mouseover")
@@ -160,10 +177,11 @@ declabtn.addEventListener("mouseover", () => {
 declabtn.addEventListener("mouseout", () => {
     declabtn.classList.remove("addclass_mouseover")
 })
-// declabtn.addEventListener("click", () => {
-//     ipcRenderer.send("declabtn click")
-// })
+declabtn.addEventListener("click", () => {
+    ipcRenderer.send("declabtn click")
+})
 
+// > 當 [ delete item ] 被點擊時執行 並向主進程呼叫視窗
 const deitmbtn = document.getElementById("deitm")
 deitmbtn.addEventListener("mouseover", () => {
     deitmbtn.classList.add("addclass_mouseover")
@@ -171,10 +189,13 @@ deitmbtn.addEventListener("mouseover", () => {
 deitmbtn.addEventListener("mouseout", () => {
     deitmbtn.classList.remove("addclass_mouseover")
 })
+
+// do 刪除項目功能
 // deitmbtn.addEventListener("click", () => {
 //     ipcRenderer.send("deitmbtn click")
 // })
 
+// > 當 [ delete child class ] 被點擊時執行 並向主進程呼叫視窗
 const deCCWbtn = document.getElementById("deCCW")
 deCCWbtn.addEventListener("mouseover", () => {
     deCCWbtn.classList.add("addclass_mouseover")
@@ -182,6 +203,11 @@ deCCWbtn.addEventListener("mouseover", () => {
 deCCWbtn.addEventListener("mouseout", () => {
     deCCWbtn.classList.remove("addclass_mouseover")
 })
-// deitmbtn.addEventListener("click", () => {
+
+// do 刪除子分類功能
+// deCCWbtn.addEventListener("click", () => {
 //     ipcRenderer.send("deCCWbtn click")
 // })
+
+// ? 新增子分類項目功能
+// ? 刪除子分類項目功能

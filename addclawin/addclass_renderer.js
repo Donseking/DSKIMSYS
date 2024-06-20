@@ -32,12 +32,14 @@ enbtn.addEventListener("click", () => {
     }
 })
 
+// FUN 計算 object 長度
 function objlength (obj){
     let olen = Object.keys(obj).length
     return olen
 }
 
-
+// fix 第三次增加時會重複
+// FUN [ 新增分類 ] 主要 function
 function getvalue(){
     var vals = document.getElementById("input_bar")
     var val = vals.value
