@@ -38,14 +38,13 @@ enbtn.addEventListener("click", () => {
     getdata()
 })
 
-// fix 無法輸入第三個項目
 // FUN [ 新增項目 ] 主要進入點
 function getdata(){
     var name = document.getElementById("name").value
     var num = document.getElementById("num").value
     var unit = document.getElementById("unit").value
 
-    if (name === "" || num === "" || unit === ""){
+    if ( name === "" || num === "" || unit === "" ){
         var warnstr = "Please enter the items"
         fs.writeFileSync("warnwin/warntext.json", JSON.stringify([warnstr]), (err) =>{
             if (err){
@@ -67,6 +66,7 @@ function adit(itname, itnum, itunit){
             var pro = data[i]["project"]
             var namelist = getclassname(pro)
             if ( namelist.length === 0) {
+                console.log("=0")
                 pro.push(
                     {
                         "name" : itname,
@@ -80,32 +80,9 @@ function adit(itname, itnum, itunit){
                         console.log(err)
                     }
                 })
-            }else if ( namelist.length > 1 ) {
-                for (var j = 0 ; j < namelist.length ; j ++ ) {
-                    if ( itname === namelist[j] ){
-                        pro[j]["num"] = parseInt(pro[j]["num"]) + parseInt(itnum)
-                        data[i]["project"] = pro
-                        fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
-                            if ( err ) {
-                                console.log(err)
-                            }
-                        })
-                        break
-                    }
-                }
-                if ( j === namelist.length - 1 ){
-                    var newdata = {
-                        "name" : itname,
-                        "num" : itnum,
-                        "unit" : itunit,
-                        "type" : "class item"
-                    }
-                    data[i]['project'].push(newdata)
-                    fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
-                        console.log(err)
-                    })
-                }
-            }else {
+                break
+            }else if ( namelist.length == 1 ) {
+                console.log("=1")
                 if ( itname != namelist[0] ){
                     var newdata = {
                         "name" : itname,
@@ -125,6 +102,33 @@ function adit(itname, itnum, itunit){
                         }
                     })
                 }
+                break
+            }else {
+                for (var j = 0 ; j < namelist.length ; j ++ ) {
+                    if ( itname == namelist[j] ){
+                        pro[j]["num"] = parseInt(pro[j]["num"]) + parseInt(itnum)
+                        data[i]["project"] = pro
+                        fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
+                            if ( err ) {
+                                console.log(err)
+                            }
+                        })
+                        break
+                    }
+                }
+                if ( j == namelist.length && itname != namelist[j - 1]){
+                    var newdata = {
+                        "name" : itname,
+                        "num" : itnum,
+                        "unit" : itunit,
+                        "type" : "class item"
+                    }
+                    data[i]['project'].push(newdata)
+                    fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
+                        console.log(err)
+                    })
+                }
+                break
             }
         }
     }

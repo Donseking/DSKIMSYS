@@ -38,7 +38,6 @@ function objlength (obj){
     return olen
 }
 
-// fix 第三次增加時會重複
 // FUN [ 新增分類 ] 主要 function
 function getvalue(){
     var vals = document.getElementById("input_bar")
