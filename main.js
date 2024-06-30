@@ -173,16 +173,29 @@ app.whenReady().then(() => {
     declawin = undefined
   })
 
-  // ? 尚未建立的視窗
-  // let conwin = undefined
-  // ipcMain.on("decon click", () => {
-  //   if ( typeof conwin === "undefined" ){
-  //     adop.parent = declawin
-  //     conwin = createWindow("confirmwin/conwin.html", adop)
-  //   }
-  // })
-  // ipcMain.on("conwin close", () => {
-  //   conwin.close()
-  //   conwin = undefined
-  // })
+  let conwin = undefined
+  ipcMain.on("decla class click", () => {
+    if ( typeof conwin === "undefined" ){
+      adop.height = 150
+      adop.parent = declawin
+      conwin = createWindow("confirmwin/conwin.html", adop)
+      adop.parent = mainwin
+      adop.height = 300
+    }
+  })
+  ipcMain.on("conwin close", () => {
+    conwin.close()
+    conwin = undefined
+  })
+
+  let deitmwin = undefined
+  ipcMain.on("deitmbtn click", () => {
+    if ( typeof conwin === "undefined" ){
+      deitmwin = createWindow("deitmwin/deitmwin.html", adop)
+    }
+  })
+  ipcMain.on("deitm close", () => {
+    deitmwin.close()
+    deitmwin = undefined
+  })
 })

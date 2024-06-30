@@ -65,3 +65,39 @@ body{
     top: 4px;
     transform: rotate(-45deg);
 }
+
+.btn{
+    box-sizing: border-box;
+    -webkit-app-region: no-drag;
+    width: 80px;
+    height: 30px;
+    border: 3px solid skyblue;
+    border-radius: 10px;
+    margin: 10px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    float: right;
+}
+
+.btnnew{
+    height: 29px;
+    line-height: 20px;
+    border: 5px solid;
+    background-color: #454545;
+}
+
+.cancel{
+    color: #ffaaaa;
+    border-color: #ffaaaa;
+}
+
+
+#main{
+    box-sizing: border-box;
+    width: 100vw;
+    height: 60px;
+    padding: 15px;
+    line-height: 30px;
+    margin-top: 10px;
+}

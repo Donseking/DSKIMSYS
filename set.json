@@ -1,0 +1,51 @@
+{
+    "workbench.colorTheme": "SynthWave '84",
+    "todo-tree.general.tags": ["FUN", "!", "?", ">", "do","fix"],
+    "todo-tree.general.statusBar": "tags",
+    "todo-tree.highlights.customHighlight": {
+      "FUN": {
+        "foreground": "#b8d7ff",
+        "iconColour": "#b8d7ff",
+        "icon": "code",
+        "type": "text-and-comment",
+      },
+      "!": {
+        "foreground": "#d9444a",
+        "iconColour": "#d9444a",
+        "icon": "eye",
+        "type": "text-and-comment",
+      },
+      "?": {
+        "foreground": "#7c3ce2",
+        "iconColour": "#7c3ce2",
+        "icon": "comment-discussion",
+        "type": "text-and-comment",
+      },
+      ">": {
+        "foreground": "#07a6fc",
+        "iconColour": "#07a6fc",
+        "icon": "three-bars",
+        "type": "text-and-comment",
+      },
+      "do": {
+        "background": "#1c4762",
+        "foreground": "#18e3f5",
+        "iconColour": "#18e3f5",
+        "icon": "check",
+        "type": "text-and-comment"
+      },
+      "fix": {
+        "background": "#3b3b3b",
+        "foreground": "#c592e2",
+        "iconColour": "#7b449b",
+        "icon": "bug",
+        "type": "text-and-comment"
+      }
+    },
+    "powermode.enabled": true,
+    "powermode.shake.enabled": false,
+    "editor.guides.bracketPairs": true,
+    "highlight-matching-tag.highlightFromContent": true,
+    "highlight-matching-tag.highlightSelfClosing": true,
+    "highlight-matching-tag.noDefaultEmptyElements": true,
+  }

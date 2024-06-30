@@ -110,6 +110,23 @@ body{
     position: absolute;
     top: 20px;
     right: 0px;
+    overflow: auto;
+    &::-webkit-scrollbar{
+        width: 5px;
+    }
+    &::-webkit-scrollbar-button {
+        background: transparent;
+    }
+    &::-webkit-scrollbar-track-piece{
+        background: transparent;
+    }
+    &::-webkit-scrollbar-track{
+        box-shadow: none;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: #555555;
+        border-radius: 5px;
+    }
 }
 
 #Input_Bar{
@@ -176,6 +193,23 @@ body{
     top: 60px;
 }
 
+.rightmenu{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 150px;
+    height: 200px;
+    border-radius: 10px;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    background: rgba(32, 32, 32, 0.6);
+    visibility: hidden;
+}
+
+.active{
+    visibility: visible;
+}
+
 .classes{
     box-sizing: border-box;
     width: 80%;
@@ -196,6 +230,7 @@ body{
 }
 
 #itemcss{
+    -webkit-app-region: no-drag;
     box-sizing: border-box;
     width: 80%;
     height: 45px;
@@ -232,4 +267,19 @@ body{
     background-color: #454545;
     border: 5px solid skyblue;
     line-height: 20px;
+}
+
+.rmdiv{
+    -webkit-app-region: no-drag;
+    box-sizing: border-box;
+    width: auto;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 13px;
+    border-radius: 10px;
+}
+
+.rmdivnew{
+    background: rgba(22, 22, 22, 0.8);
 }

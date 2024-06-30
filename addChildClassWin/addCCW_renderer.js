@@ -16,20 +16,9 @@ function send(str, ar){
     ipcRenderer.send(str, ar)
 }
 
-// FUN 計算 object 長度
-function oblen(obj){
-    let olen = Object.keys(obj).length
-    return olen
-}
-
 // FUN array 長度
 function len(arr){
     return arr.length
-}
-
-// FUN print
-function con(str){
-    console.log(str)
 }
 
 var data = JSON.parse(fs.readFileSync("proj.json").toString())
@@ -71,7 +60,6 @@ enbtn.addEventListener("click", () => {
     getCCname()
 })
 
-// fix 第三次增加時會重複
 // FUN 獲取子分類名稱 並顯示在主頁面
 function getCCname(){
     var warnstr = ""
@@ -90,10 +78,24 @@ function getCCname(){
             var classnamelist = allclassname(data)
             for ( var i = 0; i < datalen - 1; i ++ ){
                 var pro = data[i]["project"]
-                for ( var j = 0; j < len(pro); j ++ ){
-                    if ( mark == classnamelist[i] && pro[j]["name"] == ccname ){       // > 檢查子分類是否重複建立
-                        warnstr = "This subclass has been created in this class"
-                        warnning(warnstr)
+                if ( mark == classnamelist[i] ){
+                    for ( var j = 0; j < len(pro); j ++ ){
+                        if ( pro[j]["name"] == ccname ){       // > 檢查子分類是否重複建立
+                            warnstr = "This subclass has been created in this class"
+                            warnning(warnstr)
+                            break
+                        }
+                    }
+                    if ( j == len( pro ) && pro[ j - 1 ] != ccname ){       // > 當子分類未建立
+                        newdata = {
+                            "name" : ccname,
+                            "project" : [],
+                            "type" : "child class item"
+                        }
+                        pro.push(newdata)
+                        fs.writeFileSync("proj.json", JSON.stringify(data), (err) => {
+                            console.log(err)
+                        })
                     }
                 }
             }
@@ -101,6 +103,7 @@ function getCCname(){
     }
 }
 
+// FUN 獲得所有分類名稱
 function allclassname(data){
     var dlen = len(data)
     var all = []
@@ -109,12 +112,3 @@ function allclassname(data){
     }
     return all
 }
-
-// function if_name_equ_mark(all, mark){
-//     for( var i = 0 ; i < len(all); i ++ ){
-//         if ( all[i] == mark ){
-//             return all[i]
-//         }
-//     }
-
-// }

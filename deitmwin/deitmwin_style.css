@@ -87,34 +87,14 @@ body{
     background-color: #454545;
 }
 
-.nothingstring{
-    margin: 10px;
+.ccdiv{
+    box-sizing: border-box;
+    -webkit-app-region: no-drag;
+    width: 200px;
     height: 40px;
-    padding: 10px;
-    line-height: 20px;
-}
-
-#main{
-    width: 100vw;
-    height: 90vh;
-    position: absolute;
-    top: 20px;
-    right: 0px;
-    overflow: auto;
-    &::-webkit-scrollbar{
-        width: 5px;
-    }
-    &::-webkit-scrollbar-button {
-        background: transparent;
-    }
-    &::-webkit-scrollbar-track-piece{
-        background: transparent;
-    }
-    &::-webkit-scrollbar-track{
-        box-shadow: none;
-    }
-    &::-webkit-scrollbar-thumb{
-        background-color: #555555;
-        border-radius: 5px;
-    }
+    border: 3px solid skyblue;
+    border-radius: 10px;
+    margin: 10px;
+    line-height: 36px;
+    font-size: 15px;
 }

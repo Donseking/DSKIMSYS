@@ -1,7 +1,6 @@
 const { ipcRenderer } = require("electron")
 var fs = require("fs")
 
-
 // FUN 讀取資料
 function repro(){
     var data = JSON.parse(fs.readFileSync("proj.json").toString())
@@ -15,6 +14,46 @@ function wripro(data, file){
             console.log(err)
         }
     })
+}
+
+// FUN 向主進程傳訊息
+function send(str, ar){
+    ipcRenderer.send(str, ar)
+}
+
+// FUN 判斷資料最後是否有特定詞
+function if_string(){
+    var data = JSON.parse(fs.readFileSync("proj.json").toString())
+    var result = Object.keys(data).map((key) => [key, data[key]]);
+    if (typeof result[result.length - 1][1] === "string"){
+        return 1
+    }else{
+        return 0
+    }
+}
+
+// FUN 將分類加入畫面
+function addchild(li){
+    if ( li.length != 0 ){
+        for ( var i = 0; i < li.length; i ++ ){
+            var div = document.createElement("div")
+            div.className = "cladiv"
+            div.innerHTML = li[i]
+            maindiv.appendChild(div)
+        }
+    }
+}
+
+// FUN 獲取分類名稱
+function getclassname(){
+    var data = repro()
+    var re = []
+    for (var i = 0; i < data.length; i ++){
+        if ( typeof data[i] != "string" ){
+            re.push(data[i]["name"])
+        }
+    }
+    return re
 }
 
 const clobtn = document.getElementById("close")
@@ -44,32 +83,22 @@ cla.forEach((e) => {
         e.classList.remove("cladivNew")
     })
     e.addEventListener("click", () => {
-        ipcRenderer.send("decla click")
-
-        // do 將選擇的分類刪除的功能
+        var data = repro()
+        if ( if_string() === 0){
+            data.push(e.innerHTML)
+            fs.writeFileSync("proj.json", JSON.stringify(data), (err) =>{
+                if (err){
+                    console.log(err)
+                }
+            })
+        }else{
+            data.splice(-1, 1, e.innerHTML)
+            fs.writeFileSync("proj.json", JSON.stringify(data), (err) =>{
+                if (err){
+                    console.log(err)
+                }
+            })
+        }
+        send("decla class click")
     })
 })
-
-// FUN 將分類加入畫面
-function addchild(li){
-    if ( li.length != 0 ){
-        for ( var i = 0; i < li.length; i ++ ){
-            var div = document.createElement("div")
-            div.className = "cladiv"
-            div.innerHTML = li[i]
-            maindiv.appendChild(div)
-        }
-    }
-}
-
-// FUN 獲取分類名稱
-function getclassname(){
-    var data = repro()
-    var re = []
-    for (var i = 0; i < data.length; i ++){
-        if ( typeof data[i] != "string" ){
-            re.push(data[i]["name"])
-        }
-    }
-    return re
-}
