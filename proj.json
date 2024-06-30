@@ -1,1 +1,24 @@
+<<<<<<< Updated upstream
 ["undefined"]
+=======
+[
+    {
+        "name": "aaa",
+        "project": [
+            {
+                "name": "aa",
+                "num": null,
+                "unit": "a",
+                "type": "class item"
+            },
+            {
+                "name": "4567",
+                "num": "456",
+                "unit": "456",
+                "type": "class item"
+            }
+        ]
+    },
+    "aaa"
+]
+>>>>>>> Stashed changes
