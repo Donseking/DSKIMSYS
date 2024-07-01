@@ -1,6 +1,6 @@
 import json
 
-with open("proj.json", "r") as f :
+with open("proj.json", "r", encoding = "utf-8") as f :
     data = json.load(f)
 
 with open("proj.json", "w") as f :

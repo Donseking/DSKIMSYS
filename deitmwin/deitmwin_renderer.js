@@ -3,7 +3,7 @@ var fs = require("fs")
 
 const Data = repro("proj.json")
 const profile = "proj.json"
-var Mark = repro("./deitmwin/data.json")[0]
+var Mark = Data[len(Data) - 1]
 var warnstr = ""
 var main = document.getElementById("main")
 
@@ -52,17 +52,6 @@ function allclassname(data){
     return result
 }
 
-// FUN 將分類渲染入畫面
-function renderclass(cla){
-    for ( var i = 0; i < len(cla); i ++ ){
-        var div = document.createElement("div")
-        div.id = "classes"
-        div.classList.add("cladiv")
-        div.innerHTML = cla[i]
-        main.appendChild(div)
-    }
-}
-
 // FUN 將項目渲染入畫面
 function renderitem(pro){
     main.innerHTML = ''
@@ -98,33 +87,13 @@ devbtn.addEventListener("click", () => {
     ipcRenderer.send("devtools")
 })
 
-if ( len(repro("./deitmwin/data.json")) == 0 ){
-    renderclass(allclassname(Data))
-}else {
-    for ( var i = 0; i < len(Data) - 1; i ++ ){
-        if ( Mark == Data[i]["name"] ){
-            var pro = Data[i]["project"]
-            renderitem(pro)
-        }
-    }
-}
-
-const cladiv = document.querySelectorAll(".cladiv")
-cladiv.forEach((e) => {
-    e.addEventListener("mouseover", () => {
-        e.classList.add("cladivNew")
-    })
-    e.addEventListener("mouseout", () => {
-        e.classList.remove("cladivNew")
-    })
-    e.addEventListener("click", () => {
-        var d = repro("./deitmwin/data.json")
-        if ( typeof Mark == "string" ){
-            d.splice(-1, 1, e.innerHTML)
-            wripro(profile, d)
-        }else{
-            d.push(e.innerHTML)
-            wripro(profile, d)
-        }
-    })
+const chbtn = document.getElementById("choose")
+chbtn.addEventListener("mouseover", () => {
+    chbtn.classList.add("choose_new")
+})
+chbtn.addEventListener("mouseout", () => {
+    chbtn.classList.remove("choose_new")
+})
+chbtn.addEventListener("click", () => {
+    ipcRenderer.send("choose click")
 })

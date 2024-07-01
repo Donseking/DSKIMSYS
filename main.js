@@ -2,6 +2,7 @@ const { app, BrowserWindow } = require('electron')
 const path = require('node:path')
 const { ipcMain } = require("electron")
 require("electron-reload")(__dirname)
+var cmd = require("node-cmd")
 
 function createWindow(file, op){
   const mainwin = new BrowserWindow(op)
@@ -125,7 +126,6 @@ app.whenReady().then(() => {
   let choosewin = undefined
   ipcMain.on("choose click", () => {
     if(typeof choosewin === "undefined"){
-      adop.parent = aditwin
       choosewin = createWindow("./choosewin/chwin.html", adop)
     }
   })
@@ -198,4 +198,7 @@ app.whenReady().then(() => {
     deitmwin.close()
     deitmwin = undefined
   })
+
+
+  cmd.runSync("py jshand.py")
 })

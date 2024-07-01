@@ -160,5 +160,5 @@ function getvalue(){
         warnstr = "Please do not enter ' ' for class name"
         warnning(warnstr)
     }
-    // cmd.runSync("py jshand.py")
+    cmd.runSync("py jshand.py")
 }

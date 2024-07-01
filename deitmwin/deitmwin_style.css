@@ -98,3 +98,23 @@ body{
     line-height: 36px;
     font-size: 15px;
 }
+
+.choose{
+    -webkit-app-region: no-drag;
+    box-sizing: border-box;
+    width: 20%;
+    height: 30px;
+    border: 3px solid skyblue;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 24px;
+    position: absolute;
+    left: 10%;
+    bottom: 15px;
+}
+
+.choose_new{
+    border: 5px solid skyblue;
+    line-height: 20px;
+    background-color: #454545;
+}
