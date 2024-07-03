@@ -52,7 +52,7 @@ devbtn.addEventListener("click", () => {
 })
 
 const main = document.getElementById("main")
-main.innerHTML = " 確定要刪除 " + mark + " 分類嗎 ? "
+main.innerHTML = " 確定要刪除 " + mark + " 嗎 ? "
 
 const sure = document.getElementById("sure")
 sure.addEventListener("mouseover", () => {

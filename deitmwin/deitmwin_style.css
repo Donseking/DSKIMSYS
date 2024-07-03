@@ -90,31 +90,24 @@ body{
 .ccdiv{
     box-sizing: border-box;
     -webkit-app-region: no-drag;
-    width: 200px;
     height: 40px;
     border: 3px solid skyblue;
     border-radius: 10px;
     margin: 10px;
-    line-height: 36px;
+    line-height: 14px;
     font-size: 15px;
+    padding: 10px;
+    position: relative;
 }
 
-.choose{
-    -webkit-app-region: no-drag;
-    box-sizing: border-box;
-    width: 20%;
-    height: 30px;
-    border: 3px solid skyblue;
-    border-radius: 10px;
-    text-align: center;
-    line-height: 24px;
-    position: absolute;
-    left: 10%;
-    bottom: 15px;
-}
-
-.choose_new{
-    border: 5px solid skyblue;
-    line-height: 20px;
+.ccdivNew{
+    border: 5px solid;
+    line-height: 10px;
     background-color: #454545;
+}
+
+.qua{
+    position: absolute;
+    right: 15px;
+    top: 10px;
 }
