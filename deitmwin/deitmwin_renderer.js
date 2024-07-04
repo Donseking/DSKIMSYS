@@ -2,8 +2,6 @@ const { ipcRenderer } = require("electron")
 var fs = require("fs")
 
 const Data = repro("proj.json")
-const profile = "proj.json"
-var Mark = Data[len(Data) - 1]
 var warnstr = ""
 var maindiv = document.getElementById("main")
 
@@ -23,15 +21,6 @@ function warnning(str){
     send("warn")
 }
 
-// FUN 寫入資料
-function wripro(file, data){
-    fs.writeFileSync(file, JSON.stringify(data), (err) =>{
-        if (err){
-            console.log(err)
-        }
-    })
-}
-
 // FUN array 長度
 function len(arr){
     return arr.length
@@ -40,7 +29,7 @@ function len(arr){
 // FUN 判斷資料最後是否有特定詞
 function if_string(){
     var data = JSON.parse(fs.readFileSync("proj.json").toString())
-    if (typeof Data[len(Data) - 1] === "string"){
+    if (typeof data[len(data) - 1] === "string"){
         return 1
     }else{
         return 0
@@ -51,6 +40,7 @@ function if_string(){
 // FUN 將項目渲染入畫面
 function renderitem(pro){
     maindiv.innerHTML = ""
+    var data = repro("./deitmwin/data.json")
     for ( var i = 0; i < len(pro); i ++ ){
         if ( pro[i]["type"] == "child class item" ){
             var ccdiv = document.createElement("div")
@@ -81,25 +71,19 @@ function renderitem(pro){
             e.classList.remove("ccdivNew")
         })
         e.addEventListener("click", () => {
+            if ( e.innerText.indexOf("\n") != -1 ){
+                e.innerText.replace("\n", "\\n")
+            }
             if ( if_string() === 0){
-                if ( e.hasChildNodes() ){
-                    Data.push(e.innerText)
-                    fs.writeFileSync("proj.json", JSON.stringify(Data), (err) =>{
-                        if (err){
-                            console.log(err)
-                        }
-                    })
-                }else {
-                    Data.push(e.innerText)
-                    fs.writeFileSync("proj.json", JSON.stringify(Data), (err) =>{
-                        if (err){
-                            console.log(err)
-                        }
-                    })
-                }
+                data.push(e.innerText)
+                fs.writeFileSync("./deitmwin/data.json", JSON.stringify(data), (err) =>{
+                    if (err){
+                        console.log(err)
+                    }
+                })
             }else{
-                Data.splice(-1, 1, e.innerText)
-                fs.writeFileSync("proj.json", JSON.stringify(Data), (err) =>{
+                data.splice(-1, 1, e.innerText)
+                fs.writeFileSync("./deitmwin/data.json", JSON.stringify(data), (err) =>{
                     if (err){
                         console.log(err)
                     }

@@ -1,1 +1,19 @@
-[{"name":"肉品","project":[{"name":"肌肉","num":5,"unit":"今","type":"class item"},{"name":"牛腹肉","num":"3","unit":"和","type":"class item"},{"name":"牛肉","project":[],"type":"child class item"}]},"肌肉\n5 今"]
+[
+    {
+        "name": "aa",
+        "project": [
+            {
+                "name": "a",
+                "num": null,
+                "unit": "a",
+                "type": "class item"
+            },
+            {
+                "name": "s",
+                "project": [],
+                "type": "child class item"
+            }
+        ]
+    },
+    "aa"
+]

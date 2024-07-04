@@ -101,10 +101,12 @@ function if_class_cick(itemname){
     var itemdata = JSON.parse(fs.readFileSync("proj.json").toString())
     if (itemdata.length != 0) {
         for (var i = 0; i < itemdata.length; i ++ ){
-            if (itemdata[i]["name"] === itemname){
-                var pro = []
-                pro = itemdata[i]["project"]
-                return pro
+            if( typeof itemdata[i] != "string" ){
+                if (itemdata[i]["name"] === itemname){
+                    var pro = []
+                    pro = itemdata[i]["project"]
+                    return pro
+                }
             }
         }
     }else {
